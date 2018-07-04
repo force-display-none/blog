@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+    http_basic_authenticate_with name: "dhh", password: "secret", only: :destroy
+
   def create
   	# コメント関連のリクエストでは、コメントが追加される先の記事がどれであったかを忘れないようにしておく必要があります。そこで、Articleモデルのfindメソッドを最初に呼び出し、リクエストで言及されている記事(のオブジェクト)を取得して@articleに保存しています
   	@article = Article.find(params[:article_id])
